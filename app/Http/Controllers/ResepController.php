@@ -12,7 +12,7 @@ class ResepController extends Controller
    public function index()
    {
        $reseps = Resep::with('user')->latest()->get(); // Ambil semua resep terbaru
-       return view('dashboard', compact('reseps'));
+       return view('dashboard', compact('reseps'));  
    }
 
     public function create()

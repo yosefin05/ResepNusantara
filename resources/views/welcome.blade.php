@@ -15,7 +15,6 @@
 </head>
 
 <body class="bg-[#f8f1e4] text-gray-900">
-    
     <!-- Navbar -->
     <nav class="bg-white bg-opacity-90 shadow-md fixed w-full top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,18 +34,21 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative bg-cover bg-center h-[500px] flex items-center justify-center text-center text-white"
-        style="background-image: url('https://i.pinimg.com/474x/ff/65/64/ff6564d886061092f930012ff5a56df9.jpg');">
-        <div class="bg-black bg-opacity-40 p-10 rounded-lg shadow-lg">
+    <header class="relative bg-cover bg-center h-[500px] flex items-center justify-center text-center text-white mt-16"
+        style="background-image: url('{{ asset('images/header.jpg') }}');">
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="relative z-10 px-6">
             <h1 class="text-5xl font-extrabold mb-4 tracking-wide">Eksplorasi Kuliner Nusantara</h1>
             <p class="text-lg">Temukan kelezatan warisan Indonesia dalam setiap resep yang kami sajikan.</p>
             <a href="{{ route('register') }}"
-                class="mt-4 inline-block bg-[#8B4513] text-white px-8 py-3 rounded-lg shadow-md text-lg hover:bg-[#A0522D] transition">Gabung Sekarang</a>
+                class="mt-4 inline-block bg-[#8B4513] text-white px-8 py-3 rounded-lg shadow-md text-lg hover:bg-[#A0522D] transition">
+                Gabung Sekarang
+            </a>
         </div>
     </header>
 
     <!-- Section: Daftar Resep -->
-    <section class="py-20">
+    <section class="pt-20 pb-20">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12 text-[#8B4513]">Resep Pilihan</h2>
             <div class="grid md:grid-cols-3 gap-8">
@@ -69,6 +71,6 @@
     <footer class="bg-[#8B4513] text-white text-center py-6 mt-10">
         <p>&copy; {{ date('Y') }} Resep Nusantara Sederhana. All Rights Reserved.</p>
     </footer>
-
 </body>
+
 </html>

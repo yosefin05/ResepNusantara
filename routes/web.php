@@ -27,3 +27,8 @@ Route::get('/dashboard', [ResepController::class, 'index'])->middleware(['auth']
 Route::get('/reseps/create', [ResepController::class, 'create'])->middleware(['auth'])->name('reseps.create');
 Route::post('/reseps', [ResepController::class, 'store'])->middleware(['auth'])->name('reseps.store');
 Route::get('/resep/{id}', [ResepController::class, 'show'])->name('resep.show');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('reseps', ResepController::class);
+
+});

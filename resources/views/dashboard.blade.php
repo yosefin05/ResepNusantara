@@ -23,6 +23,19 @@
                                 <p>{!! nl2br(e($resep->bahan)) !!}</p>
                                 <p><strong>Langkah:</strong></p>
                                 <p>{!! nl2br(e($resep->langkah)) !!}</p>
+
+                                {{-- Tombol Edit & Delete hanya muncul untuk admin atau pemilik resep --}}
+                                @if(auth()->user()->role === 'admin' || auth()->id() === $resep->user_id)
+                                    <div class="mt-3 d-flex justify-content-between">
+                                        <a href="{{ route('reseps.edit', $resep->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                        
+                                        <form action="{{ route('reseps.destroy', $resep->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus resep ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

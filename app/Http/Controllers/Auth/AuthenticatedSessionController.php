@@ -44,4 +44,11 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    protected function redirectTo($request)
+    {
+        if (!$request->expectsJson()) {
+            return route('login'); // Atau rute lain yang kamu mau
+        }
+    }
 }

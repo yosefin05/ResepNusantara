@@ -9,119 +9,107 @@
         background-color: #f8f1e4;
     }
 
-    .dashboard-container {
+    .page-container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 2rem 1rem;
     }
 
-    /* Simple Header */
-    .dashboard-header {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-        border-left: 5px solid #8B4513;
+    /* Header Section */
+    .page-header {
+        background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+    }
+
+    .page-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
     }
 
     .header-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 2rem;
+        position: relative;
+        z-index: 2;
     }
 
-    .header-text h1 {
-        color: #8B4513;
-        font-size: 2.2rem;
+    .header-title {
+        font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-
-    .header-text p {
-        color: #A0522D;
-        font-size: 1rem;
         margin: 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
     }
 
-    .btn-add-new {
-        background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
-        color: white;
-        padding: 0.875rem 2rem;
-        border-radius: 25px;
+    .header-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-top: 0.5rem;
+    }
+
+    .btn-add-recipe {
+        background: white;
+        color: #8B4513;
+        padding: 1rem 2rem;
+        border-radius: 50px;
         font-weight: 600;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
-        white-space: nowrap;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        font-size: 1.1rem;
     }
 
-    .btn-add-new:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
-        color: white;
+    .btn-add-recipe:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        color: #8B4513;
         text-decoration: none;
     }
 
-    /* Success Alert */
-    .alert-success {
-        background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-        border: 2px solid #28a745;
-        color: #155724;
-        padding: 1rem 1.5rem;
-        border-radius: 12px;
-        margin-bottom: 2rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 500;
+    .btn-add-recipe i {
+        font-size: 1.2rem;
     }
 
-    /* Stats Cards */
+    /* Stats Section */
     .stats-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
         margin-bottom: 3rem;
     }
 
     .stat-card {
         background: white;
-        padding: 2rem 1.5rem;
+        padding: 2rem;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
         border: 2px solid transparent;
         transition: all 0.3s ease;
         text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .stat-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
     }
 
     .stat-card:hover {
         border-color: #8B4513;
         transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(139, 69, 19, 0.15);
-    }
-
-    .stat-icon {
-        font-size: 2.5rem;
-        color: #8B4513;
-        margin-bottom: 1rem;
-        opacity: 0.8;
+        box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
     }
 
     .stat-number {
@@ -129,7 +117,6 @@
         font-weight: 700;
         color: #8B4513;
         margin-bottom: 0.5rem;
-        line-height: 1;
     }
 
     .stat-label {
@@ -138,51 +125,39 @@
         font-size: 1rem;
     }
 
+    .stat-icon {
+        font-size: 2rem;
+        color: #A0522D;
+        margin-bottom: 1rem;
+        opacity: 0.7;
+    }
+
     /* Recipe Cards */
-    .recipes-section {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-    }
-
-    .section-title {
-        color: #8B4513;
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 2rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
     .recipes-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 2rem;
+        margin-bottom: 3rem;
     }
 
     .recipe-card {
-        background:rgb(242, 235, 222);
-        border-radius: 15px;
+        background: white;
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 3px 10px rgba(139, 69, 19, 0.08);
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.1);
         transition: all 0.3s ease;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
         border: 2px solid transparent;
+        position: relative;
     }
 
     .recipe-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(139, 69, 19, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
         border-color: #8B4513;
-        background: white;
     }
 
     .recipe-image-container {
-        height: 200px;
+        height: 220px;
         position: relative;
         overflow: hidden;
         background: linear-gradient(135deg, #f8f1e4 0%, #e8d5c4 100%);
@@ -196,7 +171,7 @@
     }
 
     .recipe-card:hover .recipe-img {
-        transform: scale(1.05);
+        transform: scale(1.1);
     }
 
     .no-image {
@@ -211,58 +186,50 @@
 
     .card-content {
         padding: 1.5rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
     }
 
     .recipe-title {
         font-weight: 600;
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         margin-bottom: 0.75rem;
         color: #8B4513;
         line-height: 1.3;
     }
 
-    .meta-info {
-        font-size: 0.85rem;
-        color: #A0522D;
-        margin-bottom: 0.5rem;
+    .recipe-meta {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        color: #A0522D;
     }
 
-    .meta-info i {
-        width: 16px;
-        text-align: center;
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
     }
 
     .recipe-excerpt {
         color: #6B4423;
-        margin-top: 0.75rem;
         font-size: 0.9rem;
         line-height: 1.5;
-        flex: 1;
+        margin-bottom: 1.5rem;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
 
-    .card-footer {
-        padding: 0 1.5rem 1.5rem;
-        background: transparent;
-    }
-
-    .action-buttons {
+    .card-actions {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
     }
 
-    .btn-detail {
+    .btn-view {
         background: #8B4513;
         color: white;
         padding: 0.6rem 1.5rem;
@@ -271,27 +238,25 @@
         font-weight: 500;
         text-decoration: none;
         transition: all 0.2s ease;
-        border: 2px solid #8B4513;
         flex: 1;
         text-align: center;
     }
 
-    .btn-detail:hover {
+    .btn-view:hover {
         background: #A0522D;
-        border-color: #A0522D;
         color: white;
         text-decoration: none;
-        transform: translateY(-1px);
+        transform: translateY(-2px);
     }
 
-    .btn-group-actions {
+    .action-buttons {
         display: flex;
         gap: 0.5rem;
     }
 
     .btn-icon {
-        width: 38px;
-        height: 38px;
+        width: 40px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -327,101 +292,124 @@
 
     /* Empty State */
     .empty-state {
-        text-align: center;
+        background: white;
         padding: 4rem 2rem;
-        color: #A0522D;
+        text-align: center;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+        border: 2px solid #f8f1e4;
     }
 
     .empty-icon {
-        font-size: 4rem;
+        font-size: 5rem;
         color: #8B4513;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
         opacity: 0.6;
     }
 
-    .empty-state h3 {
+    .empty-title {
         color: #8B4513;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: 600;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
     }
 
-    .empty-state p {
+    .empty-text {
+        color: #A0522D;
         margin-bottom: 2rem;
         font-size: 1.1rem;
     }
+
+    .btn-create-first {
+        background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+        color: white;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+    }
+
+    .btn-create-first:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Pagination */
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
 </style>
 
-<div class="dashboard-container">
-    <!-- Simple Header -->
-    <div class="dashboard-header">
+<div class="page-container">
+    <!-- Header Section -->
+    <div class="page-header">
         <div class="header-content">
-            <div class="header-text">
-                <h1>Dashboard Resep Nusantara</h1>
-                <p>Kelola koleksi resep masakan tradisional Indonesia Anda</p>
+            <div>
+                <h1 class="header-title">
+                    <i class="fas fa-book"></i>
+                    Resep Saya
+                </h1>
+                <p class="header-subtitle">Koleksi resep masakan tradisional yang telah Anda buat</p>
             </div>
-            <a href="{{ route('reseps.create') }}" class="btn-add-new">
+            <a href="{{ route('reseps.create') }}" class="btn-add-recipe">
                 <i class="fas fa-plus-circle"></i>
-                Tambah Resep Baru
+                Resep Baru
             </a>
         </div>
     </div>
 
-    <!-- Success Message -->
-    @if(session('success'))
-    <div class="alert-success">
-        <i class="fas fa-check-circle"></i>
-        {{ session('success') }}
-    </div>
-    @endif
-
-    <!-- Stats Cards -->
+    @if(!$reseps->isEmpty())
+    <!-- Stats Section -->
     <div class="stats-container">
         <div class="stat-card">
             <div class="stat-icon">
                 <i class="fas fa-utensils"></i>
             </div>
-            <div class="stat-number">{{ $reseps->count() }}</div>
+            <div class="stat-number">{{ $reseps->total() }}</div>
             <div class="stat-label">Total Resep</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon">
-                <i class="fas fa-book"></i>
-            </div>
-            <div class="stat-number">{{ $reseps->where('user_id', auth()->id())->count() }}</div>
-            <div class="stat-label">Resep Saya</div>
         </div>
         <div class="stat-card">
             <div class="stat-icon">
                 <i class="fas fa-calendar-week"></i>
             </div>
             <div class="stat-number">{{ $reseps->where('created_at', '>=', now()->subDays(7))->count() }}</div>
-            <div class="stat-label">Resep Minggu Ini</div>
+            <div class="stat-label">Minggu Ini</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-calendar-day"></i>
+            </div>
+            <div class="stat-number">{{ $reseps->where('created_at', '>=', now()->subDays(30))->count() }}</div>
+            <div class="stat-label">Bulan Ini</div>
         </div>
     </div>
+    @endif
 
-    <!-- Recipes Section -->
-    <div class="recipes-section">
-        <h2 class="section-title">
-            <i class="fas fa-book-open"></i>
-            Semua Resep
-        </h2>
-
-        @if($reseps->isEmpty())
+    <!-- Recipes Grid -->
+    @if($reseps->isEmpty())
         <div class="empty-state">
             <div class="empty-icon">
-                <i class="fas fa-utensils"></i>
+                <i class="fas fa-book-open"></i>
             </div>
-            <h3>Belum ada resep yang tersedia</h3>
-            <p>Mulai berbagi resep masakan favorit Anda dan lestarikan warisan kuliner Nusantara</p>
-            <a href="{{ route('reseps.create') }}" class="btn-add-new">
+            <h3 class="empty-title">Belum Ada Resep</h3>
+            <p class="empty-text">Mulai berbagi resep masakan favorit Anda dan lestarikan warisan kuliner Nusantara</p>
+            <a href="{{ route('reseps.create') }}" class="btn-create-first">
                 <i class="fas fa-plus-circle"></i>
                 Buat Resep Pertama
             </a>
         </div>
-        @else
+    @else
         <div class="recipes-grid">
-            @foreach ($reseps as $resep)
+            @foreach($reseps as $resep)
             <div class="recipe-card">
                 <!-- Recipe Image -->
                 <div class="recipe-image-container">
@@ -440,31 +428,29 @@
                 <div class="card-content">
                     <h3 class="recipe-title">{{ $resep->judul }}</h3>
                     
-                    <div class="meta-info">
-                        <i class="fas fa-user"></i>
-                        <span>{{ $resep->user->name }}</span>
-                    </div>
-                    
-                    <div class="meta-info">
-                        <i class="far fa-clock"></i>
-                        <span>{{ $resep->created_at->diffForHumans() }}</span>
+                    <div class="recipe-meta">
+                        <div class="meta-item">
+                            <i class="far fa-clock"></i>
+                            <span>{{ $resep->created_at->diffForHumans() }}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>{{ $resep->created_at->format('d M Y') }}</span>
+                        </div>
                     </div>
                     
                     <p class="recipe-excerpt">
-                        {{ Str::words($resep->bahan, 20, '...') }}
+                        {{ Str::words($resep->bahan, 15, '...') }}
                     </p>
-                </div>
 
-                <!-- Card Footer -->
-                <div class="card-footer">
-                    <div class="action-buttons">
-                        <a href="{{ route('reseps.show', $resep->id) }}" class="btn-detail">
+                    <!-- Card Actions -->
+                    <div class="card-actions">
+                        <a href="{{ route('reseps.show', $resep->id) }}" class="btn-view">
                             <i class="fas fa-eye me-1"></i>
                             Lihat Detail
                         </a>
                         
-                        @if(auth()->user()->role === 'admin' || auth()->id() === $resep->user_id)
-                        <div class="btn-group-actions">
+                        <div class="action-buttons">
                             <a href="{{ route('reseps.edit', $resep->id) }}" 
                                class="btn-icon btn-edit"
                                title="Edit Resep">
@@ -477,12 +463,11 @@
                                 <button type="submit" 
                                         class="btn-icon btn-delete"
                                         title="Hapus Resep"
-                                        onclick="return confirm('Yakin ingin menghapus resep ini?')">
+                                        onclick="return confirm('Yakin ingin menghapus resep {{ $resep->judul }}?')">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </div>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -491,12 +476,11 @@
 
         <!-- Pagination -->
         @if($reseps->hasPages())
-        <div class="mt-4 d-flex justify-content-center">
+        <div class="pagination-container">
             {{ $reseps->links() }}
         </div>
         @endif
-        @endif
-    </div>
+    @endif
 </div>
 
 <!-- Custom Pagination Styles -->

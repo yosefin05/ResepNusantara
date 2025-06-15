@@ -41,7 +41,23 @@ class ResepController extends Controller
         return view('reseps.show', compact('resep'));
     }
 
+
+    // Tampilkan form edit
+    public function edit($id)
+    {
+        $resep = Resep::findOrFail($id);
+
+        // Authorization
+        if (Auth::user()->role !== 'admin' && Auth::id() !== $resep->user_id) {
+            abort(403, 'Akses ditolak.');
+        }
+
+        return view('reseps.edit', compact('resep'));
+    }
+
     // Simpan resep baru
+
+     // Simpan resep baru
     public function store(Request $request)
     {
         // Validasi data input
@@ -61,16 +77,7 @@ class ResepController extends Controller
 
         // Proses upload gambar
         try {
-            $file = $request->file('gambar');
-            
-            // Generate nama unik untuk file
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            
-            // Simpan file ke storage
-            $path = $file->storeAs('public/resep_images', $fileName);
-            
-            // Simpan path relatif ke database (tanpa 'public/')
-            $gambarPath = str_replace('public/', '', $path);
+        $gambarPath = $request->file('gambar')->store('resep_images', 'public');
 
             // Simpan data ke database
             $resep = new Resep();
@@ -89,58 +96,46 @@ class ResepController extends Controller
         }
     }
 
-    // Tampilkan form edit
-    public function edit($id)
-    {
-        $resep = Resep::findOrFail($id);
-
-        // Authorization
-        if (Auth::user()->role !== 'admin' && Auth::id() !== $resep->user_id) {
-            abort(403, 'Akses ditolak.');
-        }
-
-        return view('reseps.edit', compact('resep'));
-    }
-
-    // Update resep
+        // Update resep    
     public function update(Request $request, $id)
     {
         $resep = Resep::findOrFail($id);
         
-        // Authorization
         if (Auth::user()->role !== 'admin' && Auth::id() !== $resep->user_id) {
             abort(403, 'Akses ditolak.');
         }
 
         $validated = $request->validate([
-        'judul' => 'required|max:255',
-        'bahan' => 'required',
-        'langkah' => 'required',
-        'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048'
-    ], [
-        'gambar.image' => 'File harus berupa gambar',
-        'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg',
-        'gambar.max' => 'Ukuran gambar maksimal 2MB'
-    ]);
+            'judul' => 'required|max:255',
+            'bahan' => 'required',
+            'langkah' => 'required',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ], [
+            'gambar.image' => 'File harus berupa gambar',
+            'gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg',
+            'gambar.max' => 'Ukuran gambar maksimal 2MB'
+        ]);
 
-        
-
-        // Handle gambar
+        // Handle gambar hanya jika diupload baru
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($resep->gambar) {
-                Storage::disk('public')->delete($resep->gambar);
-            }
+            // Hapus gambar lama
+            Storage::disk('public')->delete($resep->gambar);
+            
             // Upload gambar baru
-            $validated['gambar'] = $request->file('gambar')->store('resep-images', 'public');
+            $file = $request->file('gambar');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $validated['gambar'] = $file->storeAs('resep_images', $fileName, 'public');
         } else {
+            // Pertahankan gambar lama jika tidak diupdate
             $validated['gambar'] = $resep->gambar;
         }
 
         $resep->update($validated);
 
-        return redirect()->route('reseps.show', $resep->id)->with('success', 'Resep berhasil diperbarui!');
+        return redirect()->route('reseps.show', $resep->id)
+            ->with('success', 'Resep berhasil diperbarui!');
     }
+
 
     // Hapus resep
     public function destroy($id)
